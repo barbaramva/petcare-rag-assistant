@@ -58,7 +58,7 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 # ETAPA 5 - CONFIGURAÇÃO DO MODELO DE LINGUAGEM (LLM)
 
 llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
+    model="openai/gpt-oss-120b",
     temperature=0,
     groq_api_key=GROQ_API_KEY
 )
