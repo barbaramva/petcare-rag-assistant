@@ -14,6 +14,18 @@ A aplicação utiliza a técnica de **RAG (Retrieval-Augmented Generation)** par
 
 O assistente permite realizar perguntas sobre consultas, serviços veterinários, vacinação, exames, valores, formas de pagamento, horários de funcionamento e políticas da clínica.
 
+## 🖥️ Interface da aplicação
+
+A aplicação possui uma interface web desenvolvida com Streamlit para interação com o assistente virtual.
+
+![Interface do Assistente Virtual PetCare](imagens/interface-petcare.png)
+
+### 💬 Exemplo de interação
+
+O assistente utiliza as informações recuperadas dos documentos da clínica para responder às perguntas do usuário.
+
+![Exemplo de interação com o Assistente PetCare](imagens/exemplo-rag.png)
+
 ## ⚙️ Como funciona
 
 O funcionamento do assistente segue um fluxo de RAG:
