@@ -1,3 +1,9 @@
+## 🌐 Aplicação online
+
+Acesse o assistente virtual:
+
+https://petcare-rag-assistant.streamlit.app
+
 # 🐾 Clínica Veterinária PetCare — Assistente Virtual com RAG
 
 Este projeto foi desenvolvido como parte do Challenge da trilha **Inteligência de Dados e RAG Avançado**, do programa Oracle Next Education (ONE).
@@ -29,7 +35,7 @@ O funcionamento do assistente segue um fluxo de RAG:
 - **InMemoryVectorStore** — armazenamento vetorial utilizado para realizar a busca semântica nos documentos.
 - **MMR (Maximal Marginal Relevance)** — estratégia utilizada pelo retriever para selecionar chunks relevantes e diversificados.
 - **Groq** — API utilizada para acesso ao modelo de linguagem.
-- **Llama 3.3 70B Versatile** — modelo de linguagem utilizado para gerar as respostas do assistente.
+- **GPT-OSS 120B** — modelo de linguagem utilizado para gerar as respostas do assistente por meio da API Groq.
 - **Streamlit** — utilizado para desenvolver a interface web do chatbot.
 - **PyPDFLoader** — utilizado para carregar e extrair o conteúdo dos documentos PDF.
 - **python-dotenv** — utilizado para carregar a chave da API por meio de variável de ambiente.
