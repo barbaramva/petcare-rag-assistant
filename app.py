@@ -2,6 +2,7 @@
 
 from langchain_community.document_loaders import PyPDFLoader
 from pathlib import Path
+import streamlit as st
 
 pasta_documentos = Path("Documentos")
 
@@ -31,18 +32,28 @@ chunks = text_splitter.split_documents(documentos)
 
 from langchain_huggingface import HuggingFaceEmbeddings
 
-embeddings_model = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
-)
+@st.cache_resource
+def carregar_embeddings():
+    return HuggingFaceEmbeddings(
+        model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    )
 
+embeddings_model = carregar_embeddings()
 
 # ETAPA 4 - CRIAÇÃO DO VECTOR STORE
 
 from langchain_core.vectorstores import InMemoryVectorStore
 
-vector_store = InMemoryVectorStore(embeddings_model)
+@st.cache_resource
+def criar_vector_store(_embeddings_model, _chunks):
+    vector_store = InMemoryVectorStore(_embeddings_model)
+    vector_store.add_documents(_chunks)
+    return vector_store
 
-vector_store.add_documents(chunks)
+vector_store = criar_vector_store(
+    embeddings_model,
+    chunks
+)
 
 
 # CONFIGURAÇÃO DAS VARIÁVEIS DE AMBIENTE
@@ -136,7 +147,6 @@ PERGUNTA ATUAL:
 
 # ETAPA 7 - INTERFACE COM STREAMLIT
 
-import streamlit as st
 
 st.set_page_config(
     page_title="Clínica Veterinária PetCare",
