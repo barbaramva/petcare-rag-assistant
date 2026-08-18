@@ -3,6 +3,10 @@
 from langchain_community.document_loaders import PyPDFLoader
 from pathlib import Path
 import streamlit as st
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 pasta_documentos = Path("Documentos")
 
@@ -30,15 +34,14 @@ chunks = text_splitter.split_documents(documentos)
 
 # ETAPA 3 - CRIAÇÃO DOS EMBEDDINGS
 
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
 
-@st.cache_resource
-def carregar_embeddings():
-    return HuggingFaceEmbeddings(
-        model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
-    )
+HF_TOKEN = os.getenv("HF_TOKEN")
 
-embeddings_model = carregar_embeddings()
+embeddings_model = HuggingFaceEndpointEmbeddings(
+    model="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    huggingfacehub_api_token=HF_TOKEN
+)
 
 # ETAPA 4 - CRIAÇÃO DO VECTOR STORE
 
@@ -58,11 +61,7 @@ vector_store = criar_vector_store(
 
 # CONFIGURAÇÃO DAS VARIÁVEIS DE AMBIENTE
 
-import os
-from dotenv import load_dotenv
 from langchain_groq import ChatGroq
-
-load_dotenv()
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
