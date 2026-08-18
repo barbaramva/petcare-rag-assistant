@@ -43,7 +43,7 @@ O funcionamento do assistente segue um fluxo de RAG:
 
 - **Python** — linguagem principal utilizada no desenvolvimento da aplicação.
 - **LangChain** — utilizado para estruturar o fluxo de RAG, manipulação dos documentos e recuperação das informações.
-- **Hugging Face Embeddings** — utilizado para transformar os trechos dos documentos em representações vetoriais.
+- **Hugging Face Inference API** — utilizada para gerar remotamente os embeddings dos documentos, reduzindo o consumo de recursos da aplicação.
 - **InMemoryVectorStore** — armazenamento vetorial utilizado para realizar a busca semântica nos documentos.
 - **MMR (Maximal Marginal Relevance)** — estratégia utilizada pelo retriever para selecionar chunks relevantes e diversificados.
 - **Groq** — API utilizada para acesso ao modelo de linguagem.
